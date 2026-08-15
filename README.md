@@ -73,6 +73,12 @@ app/src/main/
 
 ---
 
+## 🤝 友情链接
+
+- **[Linux DO](https://linux.do)** —— 开放、自由的 Linux 与开源开发者社区
+
+[![Linux DO](https://img.shields.io/badge/Linux_DO-%E5%BC%80%E5%8F%91%E8%80%85%E7%A4%BE%E5%8C%BA-4169E1)](https://linux.do)
+
 ## 📬 交流与反馈
 
 QQ 交流群：**1045531031**
