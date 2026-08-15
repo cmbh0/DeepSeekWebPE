@@ -1,8 +1,14 @@
 # DeepSeekWebPE
 
-一个由 AIDE 编译制作的软件包，在移动端上适配 DeepSeek Hermes！QQ 交流群：1045531031
+> ### 💬 QQ 交流群：**1045531031**
+>
+> 一个由 **GPT（DeepSeek PE / Harness）** + **AIDE** 编写制作、面向**安卓移动端**的 **DeepSeek Hermes** 专用适配壳。内置快捷的 **悬浮窗 UI** 与**内置教程**，让 DeepSeek 原生 Web 界面在手机上也能流畅、顺手地使用。
 
-> **DeepSeekWebPE** 是由 **GPT（DeepSeek PE / Harness）** 制作、面向 **安卓移动端** 的 **DeepSeek Hermes** 专用适配壳。它内置了快捷的 **悬浮窗 UI** 以及内置教程，让 DeepSeek 原生 Web 界面在手机上也能流畅、顺手地使用。
+---
+
+## 📸 效果图
+
+![](https://i.imgs.ovh/2026/08/15/e7a35add8538de80026f3a8971d894b2.jpg)
 
 ---
 
