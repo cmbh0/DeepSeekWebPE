@@ -1,0 +1,20 @@
+# Build artifacts
+/build
+app/build
+.gradle
+*.apk
+*.aab
+
+# Local configuration (not for VCS)
+local.properties
+.idea/
+*.iml
+captures
+.externalNativeBuild
+.cxx
+
+# App runtime data / user chats (do not publish personal data)
+app/.backup/
+
+# Stray development screenshot
+app/1786732732278.jpg

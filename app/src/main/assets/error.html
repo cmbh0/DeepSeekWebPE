@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>DeepSeekPEweb - 服务未启动</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0e141d;
+            --panel: #151f2d;
+            --panel-strong: #1c2a3d;
+            --text: #eef4fb;
+            --muted: #99a9bb;
+            --accent: #8ab4f8;
+            --accent-strong: #aecbfa;
+            --line: rgba(191, 213, 241, .16);
+            --danger: #ffb4ab;
+        }
+        * { box-sizing: border-box; }
+        html, body { min-height: 100%; margin: 0; }
+        body {
+            background:
+                linear-gradient(135deg, rgba(44, 74, 111, .32), transparent 42%),
+                linear-gradient(315deg, rgba(19, 98, 104, .2), transparent 48%),
+                var(--bg);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .page {
+            width: min(960px, calc(100% - 64px));
+            margin: 0 auto;
+            padding: 56px 0 72px;
+        }
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            color: var(--accent-strong);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+        .eyebrow::before {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--danger);
+            box-shadow: 0 0 0 5px rgba(255, 180, 171, .12);
+            content: "";
+        }
+        h1 {
+            max-width: 760px;
+            margin: 18px 0 14px;
+            font-size: clamp(34px, 5vw, 58px);
+            line-height: 1.05;
+            letter-spacing: 0;
+        }
+        .lead {
+            max-width: 720px;
+            margin: 0;
+            color: var(--muted);
+            font-size: 18px;
+            line-height: 1.65;
+        }
+        .status {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 28px;
+            padding: 9px 14px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: rgba(21, 31, 45, .72);
+            color: var(--muted);
+            font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+            font-size: 13px;
+        }
+        .status strong { color: var(--danger); font-weight: 600; }
+        .content {
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(260px, .85fr);
+            gap: 20px;
+            margin-top: 44px;
+        }
+        .card {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: linear-gradient(145deg, rgba(28, 42, 61, .92), rgba(21, 31, 45, .92));
+            box-shadow: 0 24px 64px rgba(0, 0, 0, .2);
+        }
+        .steps { padding: 26px; }
+        .card h2 { margin: 0 0 20px; font-size: 20px; letter-spacing: 0; }
+        .step {
+            display: grid;
+            grid-template-columns: 30px minmax(0, 1fr);
+            gap: 12px;
+            align-items: start;
+            margin-top: 20px;
+        }
+        .step:first-of-type { margin-top: 0; }
+        .number {
+            display: grid;
+            width: 30px;
+            height: 30px;
+            place-items: center;
+            border-radius: 50%;
+            background: rgba(138, 180, 248, .16);
+            color: var(--accent-strong);
+            font-weight: 700;
+        }
+        .step h3 { margin: 3px 0 5px; font-size: 15px; }
+        .step p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.55; }
+        .tip { padding: 26px; }
+        .tip p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.65; }
+        .tip strong { color: var(--text); }
+        .code-card { margin-top: 20px; overflow: hidden; }
+        .code-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 16px 18px;
+            border-bottom: 1px solid var(--line);
+        }
+        .code-head span { color: var(--muted); font-size: 13px; }
+        button {
+            min-height: 38px;
+            border: 1px solid rgba(174, 203, 250, .38);
+            border-radius: 6px;
+            padding: 0 13px;
+            background: rgba(138, 180, 248, .14);
+            color: var(--accent-strong);
+            font: inherit;
+            font-size: 13px;
+            font-weight: 700;
+        }
+        button:active { background: rgba(138, 180, 248, .3); }
+        pre {
+            margin: 0;
+            padding: 20px 18px 22px;
+            overflow-x: auto;
+            color: #d9e6f5;
+            font: 13px/1.7 ui-monospace, SFMono-Regular, Consolas, monospace;
+            white-space: pre;
+        }
+        .note {
+            margin-top: 20px;
+            padding: 16px 18px;
+            border-left: 3px solid var(--accent);
+            background: rgba(138, 180, 248, .08);
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        .note code { color: var(--accent-strong); }
+        @media (max-width: 700px) {
+            .page { width: min(100% - 32px, 620px); padding-top: 34px; }
+            .content { grid-template-columns: 1fr; margin-top: 30px; }
+            .lead { font-size: 16px; }
+            h1 { font-size: 38px; }
+        }
+    </style>
+</head>
+<body>
+<main class="page">
+    <div class="eyebrow">Local Web UI</div>
+    <h1>本地服务还没有运行</h1>
+    <p class="lead">未检测到 <strong>http://127.0.0.1:3080</strong>。请先安装 Termux，授予所需权限，并在 Termux 中执行下面的命令启动 Web UI。</p>
+    <div class="status">连接状态：<strong>未连接</strong></div>
+
+    <section class="content">
+        <div class="card steps">
+            <h2>首次启动</h2>
+            <div class="step">
+                <span class="number">1</span>
+                <div><h3>安装并打开 Termux</h3><p>从可信来源安装 Termux，首次打开后按系统提示完成权限授权。</p></div>
+            </div>
+            <div class="step">
+                <span class="number">2</span>
+                <div><h3>粘贴下面的完整命令</h3><p>通常只需要点击“复制全部”，回到 Termux 粘贴并执行即可。</p></div>
+            </div>
+            <div class="step">
+                <span class="number">3</span>
+                <div><h3>启动完成后点击重试</h3><p>看到 Web UI 启动提示后，打开悬浮菜单并点击重试按钮。</p></div>
+            </div>
+        </div>
+        <aside class="card tip">
+            <h2>启动提示</h2>
+            <p><strong>命令需要在 Termux 中执行。</strong></p>
+            <p style="margin-top: 12px;">安装完成后，运行 <code>dsh web</code> 保持服务在前台运行。不要关闭 Termux 的服务进程。</p>
+        </aside>
+    </section>
+
+    <section class="card code-card">
+        <div class="code-head">
+            <span>Termux 命令</span>
+            <button id="copy-all" type="button">复制全部</button>
+        </div>
+        <pre id="commands">#!/bin/bash
+
+# 设置国内镜像源
+npm config set registry https://registry.npmmirror.com
+
+# 方法1：直接用镜像下载（推荐）
+npm i -g https://registry.npmmirror.com/dsh-termux/-/dsh-termux-1.0.0.tgz
+
+# 如果上面不行，试试方法2：用ghproxy代理GitHub
+# npm i -g https://ghproxy.com/https://github.com/sunflower2333/dsh-termux/releases/latest/download/dsh-termux.tgz
+
+# 检查版本
+dsh --version
+
+# 启动Web UI
+dsh web</pre>
+    </section>
+
+    <div class="note">执行完成后返回此页面，点击悬浮菜单里的重试图标。服务地址必须保持为 <code>127.0.0.1:3080</code>。</div>
+</main>
+<script>
+    document.getElementById('copy-all').addEventListener('click', function () {
+        var button = this;
+        var text = document.getElementById('commands').textContent;
+        function copied() {
+            button.textContent = '已复制';
+            window.setTimeout(function () { button.textContent = '复制全部'; }, 1600);
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(copied);
+            return;
+        }
+        var area = document.createElement('textarea');
+        area.value = text;
+        area.style.position = 'fixed';
+        area.style.opacity = '0';
+        document.body.appendChild(area);
+        area.select();
+        try { document.execCommand('copy'); copied(); } catch (e) { button.textContent = '请手动复制'; }
+        document.body.removeChild(area);
+    });
+</script>
+</body>
+</html>
